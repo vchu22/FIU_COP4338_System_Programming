@@ -5,3 +5,6 @@ array1 : array1.c
 
 arrayname2 : arrayname2.c
 	gcc -o arrayname2 arrayname2.c
+
+funcact : funcact.c encode.h encodecode.c
+	gcc -Wall -Wextra -std=c99 -pedantic encodecode.c -o funcact funcact.c
