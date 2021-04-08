@@ -1,14 +1,24 @@
 CC = gcc
-FLAGS = -Wall -Wextra -std=c99 -pedantic
+FLAGS = -Wall
+CFLAG = -c
 FNAME = funcact
 
-program: funcact funcact2
+EN = encode
+DE = decode
 
-funcact: funcact.c encode.h encode.c
-	$(CC) $(FLAGS) encode.c -o $(FNAME).o $(FNAME).c
+program: $(FNAME) $(FNAME)2 clean
 
-funcact2: funcact2.c decode.h decode.c
-	$(CC) $(FLAGS) decode.c -o $(FNAME)2.o $(FNAME)2.c
+$(FNAME): $(FNAME).c $(EN)
+	$(CC) $(FLAGS) $(EN).o -o $(FNAME) $(FNAME).c
+
+$(EN): $(EN).h $(EN).c
+	$(CC) $(CFLAG) $(EN).c
+
+$(FNAME)2: $(FNAME)2.c $(DE)
+	$(CC) $(FLAGS) $(DE).o -o $(FNAME)2 $(FNAME)2.c
+
+$(DE): $(DE).h $(DE).c
+	$(CC) $(CFLAG) $(DE).c
 
 clean:
-	rm *.o *.err
+	rm *.o
