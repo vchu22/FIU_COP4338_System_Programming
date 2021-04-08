@@ -1,4 +1,4 @@
-program : array1 arrayname2
+program : array1 arrayname2 funcact
 
 array1 : array1.c
 	gcc -o array1 array1.c

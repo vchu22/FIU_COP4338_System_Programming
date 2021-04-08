@@ -20,10 +20,10 @@ int main(int argc, char *argv[])
     encodingKey = number;
   }
 
-  printf("Please enter a sentence:\n");
+  printf("Enter a sentence: ");
   char sentence[80];
   fgets(sentence, 80, stdin);
   encode(sentence, encodingKey);
-  printf("Sentence: %s\n", sentence);
+  printf("The encoded sentence is: %s\n", sentence);
   return 0;
 }

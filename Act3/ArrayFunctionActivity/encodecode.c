@@ -2,12 +2,9 @@
 
 void encode(char input[80], int shift)
 {
-  char front[shift];
-  for (int i = 0; i < shift; i++)
+  for (int i = 0; i < strlen(input); i++)
   {
-    front[i] = input[i];
-  }
-  for (int i = 0; i < strlen(input) - shift; i++)
-  {
+    if (!isspace(input[i]))
+      input[i] = input[i] + shift;
   }
 }
