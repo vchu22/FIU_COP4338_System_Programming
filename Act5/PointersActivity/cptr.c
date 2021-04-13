@@ -36,14 +36,14 @@ void PrintPointers(char *c, int *i, char *s, float *f) {
   printf("Character Pointer: %p\n", c);
   printf("Integer Pointer: %p\n", i);
   printf("String Pointer: %p\n", s);
-  printf("Floating Point Pointer: %p\n\n", f);
+  printf("Floating Point Pointer: %p\n", f);
 }
 
 void PrintValues(char *c, int *i, char *s, float *f) {
   printf("Character: %c\n", *c);
   printf("Integer: %i\n", *i);
   printf("String: %s\n", s);
-  printf("Floating Point: %.2f\n\n", *f);
+  printf("Floating Point: %.2f\n", *f);
 }
 
 int main(int argc, char *argv[])
@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
     PrintValues(cptr, iptr, sptr, fptr);
     // Print out the addresses of the memory locations that each pointer points to
     PrintPointers(cptr, iptr, sptr, fptr);
+    printf("\n");
   }
   
   return 0;
