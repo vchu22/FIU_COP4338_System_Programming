@@ -26,19 +26,19 @@ int main(int argc, char *argv[])
   while ((c = getopt(argc, argv, "luf:")) != -1)
     switch (c)
     {
-    case 'l':
-      lflag = 1;
-      break;
-    case 'u':
-      uflag = 1;
-      break;
-    case 'f':
-      fflag = 1;
-      fname = optarg;
-      break;
-    case '?':
-      err = 1;
-      break;
+      case 'l':
+        lflag = 1;
+        break;
+      case 'u':
+        uflag = 1;
+        break;
+      case 'f':
+        fflag = 1;
+        fname = optarg;
+        break;
+      case '?':
+        err = 1;
+        break;
     }
 
   if (lflag && uflag)
