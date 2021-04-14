@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     while (sscanf(currLine, "%s", currWord) >= 1)
     {
       printf("File Sentence %d word %d = %s\n", lineNum, wordNum, currWord);
-      strncpy(currLine, currLine + strlen(currWord), strlen(currLine) - strlen(currWord));
+      strncpy(currLine, currLine + strlen(currWord) + 1, strlen(currLine) - strlen(currWord) + 1);
       wordNum++;
     }
     lineNum++;

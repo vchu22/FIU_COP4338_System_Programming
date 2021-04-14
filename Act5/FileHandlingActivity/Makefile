@@ -14,4 +14,4 @@ $(P3) : $(P3).c
 	gcc -o $(P3) $(P3).c
 
 clean:
-	rm $(P1) $(P2) $(P3)
+	rm $(P1) $(P2) $(P3) *.txt
