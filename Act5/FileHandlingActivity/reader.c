@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
   extern char *optarg;
   extern int optind;
@@ -14,34 +14,51 @@ int main(int argc, char *argv[])
   while ((c = getopt(argc, argv, "luf:")) != -1)
     switch (c)
     {
-      case 'f':
-        fflag = 1;
-        fname = optarg;
-        break;
-      case '?':
-        err = 1;
-        break;
+    case 'f':
+      fflag = 1;
+      fname = optarg;
+      break;
+    case '?':
+      err = 1;
+      break;
     }
 
-  if (!fflag) {
-    // provided have a hardwired name from previous program 2 (bar.txt)
+  if (optind >= argc)
+  {
+    printf("Must include an integer argument.\n");
+    fprintf(stderr, usage, argv[0]);
+    exit(1);
+  }
+  if (!fflag)
+  {
+    // if no -f flag, provided have a hardwired name from previous program 2 (bar.txt)
     fname = "bar.txt";
   }
-  // append the passed "argument string" to the file opened.
-  FILE* inFile = NULL;
+  // read from file
+  FILE *inFile = NULL;
   inFile = fopen(fname, "r");
-  if (inFile == NULL) {
+  if (inFile == NULL)
+  {
     printf("Could not open file %s.\n", fname);
     return -1;
   }
-  if (optind < argc)
+
+  printf("Opening file \"%s\"\n", fname);
+  int lineNum = 1;
+  const int lastLine = atoi(argv[optind]);
+  char currLine[80], currWord[80];
+  while (fgets(currLine, 80, inFile) && lineNum <= lastLine)
   {
-    for (; optind < argc; optind++) {
-      fprintf(inFile, "%s ", argv[optind]);
+    int wordNum = 1;
+    while (sscanf(currLine, "%s", currWord) >= 1)
+    {
+      printf("File Sentence %d word %d = %s\n", lineNum, wordNum, currWord);
+      strncpy(currLine, currLine + strlen(currWord), strlen(currLine) - strlen(currWord));
+      wordNum++;
     }
-    fprintf(inFile, "\n");
-    fflush(stdout);
+    lineNum++;
   }
-  fclose(inFile);  
+  fflush(stdout);
+  fclose(inFile);
   return 0;
 }
