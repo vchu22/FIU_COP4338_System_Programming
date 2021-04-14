@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
   char *fname;
   static char usage[] = "usage: ./updater -f filename \"argument string\"\n";
 
-  while ((c = getopt(argc, argv, "luf:")) != -1)
+  while ((c = getopt(argc, argv, "f:")) != -1)
     switch (c)
     {
       case 'f':
