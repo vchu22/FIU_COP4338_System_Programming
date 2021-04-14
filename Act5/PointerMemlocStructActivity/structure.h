@@ -9,4 +9,6 @@ typedef struct Structure_struct
   float floatingPoint;
 } Structure;
 
+void GetInputs(Structure *stc);
+
 #endif
