@@ -3,25 +3,31 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int main(void)
-{
-  printf("Parent PID at entry is %d\n", (int)getpid());
+void CreateChildProcess() {
   pid_t pid = fork();
-
   if (pid < 0)
   {
     perror("Fork failed!");
   }
   if (pid == 0)
   {
-    printf("I am child %d\n", (int)getpid());
-    sleep(5);
+    for (int i=1; i<=6; i++) {
+      printf("I am child %d and this is message num %d\n", (int)getpid(), i);
+      sleep(5);
+    }
     exit(0);
   }
-  else if (pid > 0)
-  {
-    wait();
-    printf("Parent PID at exit is %d\n", (int)getpid());
+}
+
+int main(void)
+{
+  pid_t cpid[5];
+  printf("Parent PID at entry is %d\n", (int)getpid());
+  for (int i=0; i<5; i++) {
+    CreateChildProcess();
+    cpid[i] = wait(NULL);
+    printf("Children %d exiting\n", cpid[i]);
   }
+  printf("Parent PID at exit is %d\n", (int)getpid());
   return 0;
 }
