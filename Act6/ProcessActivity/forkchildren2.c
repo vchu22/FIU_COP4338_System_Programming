@@ -3,11 +3,25 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[]){
-    char *args1[] = {"ls", "-l", NULL};
-    execvp("ls", args1);
+char *args[2][3] = {{"ls", "-l", NULL}, {"cat", "forkchildren2.c", NULL}};
 
-    char *args2[] = {"cat", "forkchildren2.c", NULL};
-    execvp("cat", args2);
+int main(int argc, char *argv[]){
+    
+    for (int i=0; i<2; i++) {
+        pid_t pid = fork();
+        if (pid < 0)
+        {
+            perror("Fork failed!");
+        }
+        else if (pid == 0)
+        {
+            execvp(args[i][0], args[i]);
+            exit(0);
+        } else {
+            wait(NULL);
+            printf("\n\n");
+        }
+    }
+    printf("The parent process is finished\n");
     return 0;
 }
