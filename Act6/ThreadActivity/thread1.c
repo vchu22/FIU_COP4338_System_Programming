@@ -9,9 +9,9 @@ long sharedVal = 100;
 /* thread function */
 void *thr_func(void *arg)
 {
-  int data = (int)arg;
-  printf("Thread ID: %d\n", data);
-  sharedVal += data;
+  int id = (int)arg;
+  printf("Thread ID: %d\n", id);
+  sharedVal += id;
   pthread_exit(NULL);
 }
 

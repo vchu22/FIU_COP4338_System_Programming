@@ -1,0 +1,14 @@
+// Result
+Shared variable: 100
+Thread ID: 0
+Thread ID: 1
+Thread ID: 2
+Thread ID: 4
+Thread ID: 3
+Shared variable: 110
+
+// Observation
+The result is very similar to that of the first program. The order of the IDs is still
+inconsistent each time it runs. The only difference it makes is that mutex prevents
+two threads from simultaneously modifying the same variables which can result in
+inconsistent values.
