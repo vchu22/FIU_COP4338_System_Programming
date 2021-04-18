@@ -1,0 +1,14 @@
+// Result
+Shared variable: 100
+Thread ID: 0
+Thread ID: 1
+Thread ID: 3
+Thread ID: 4
+Thread ID: 2
+Shared variable: 110
+
+// Observation
+After running the program multiple times, I found that the shared variable value
+was quite consistent each time I ran. However, the orders of the thread IDs are
+not always consistent. Sometimes, the larger numbers may go before the smaller
+numbers.
